@@ -3,7 +3,7 @@
 //  MetalSwift
 //
 //  Created by Warren Moore on 10/23/14.
-//  Copyright (c) 2014 Metal By Example. All rights reserved.
+//  Copyright (c) 2014 Warren Moore. All rights reserved.
 //
 
 #include <metal_stdlib>

@@ -3,7 +3,7 @@
 //  SwiftMetalDemo
 //
 //  Created by Warren Moore on 11/4/14.
-//  Copyright (c) 2014 Metal By Example. All rights reserved.
+//  Copyright (c) 2014 Warren Moore. All rights reserved.
 //
 
 import Foundation
@@ -58,7 +58,7 @@ struct Matrix4x4
         W = Vector4(x: 0, y: 0, z: 0, w: 1)
     }
     
-    static func rotationAboutAxis(axis: Vector4, byAngle angle: Float32) -> Matrix4x4
+    static func rotationAboutAxis(_ axis: Vector4, byAngle angle: Float32) -> Matrix4x4
     {
         var mat = Matrix4x4()
         
@@ -80,7 +80,7 @@ struct Matrix4x4
         return mat
     }
     
-    static func perspectiveProjection(aspect: Float32, fieldOfViewY: Float32, near: Float32, far: Float32) -> Matrix4x4
+    static func perspectiveProjection(_ aspect: Float32, fieldOfViewY: Float32, near: Float32, far: Float32) -> Matrix4x4
     {
         var mat = Matrix4x4()
         

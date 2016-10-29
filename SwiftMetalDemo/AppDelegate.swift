@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var rootViewController: UIViewController!
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         switch MBEDemoNumber
         {
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 break
         }
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         rootViewController.view.frame = window!.bounds
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()

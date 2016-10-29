@@ -3,14 +3,14 @@
 //  SwiftMetalDemo
 //
 //  Created by Warren Moore on 11/4/14.
-//  Copyright (c) 2014 Metal By Example. All rights reserved.
+//  Copyright (c) 2014 Warren Moore. All rights reserved.
 //
 
 import Metal
 
 struct SphereGenerator
 {
-    static func sphereWithRadius(radius: Float32, stacks: Int, slices: Int, device: MTLDevice) -> (MTLBuffer!, MTLBuffer!)
+    static func sphereWithRadius(_ radius: Float32, stacks: Int, slices: Int, device: MTLDevice) -> (MTLBuffer, MTLBuffer)
     {
         let pi = Float32(M_PI)
         let twoPi = pi * 2
@@ -19,9 +19,9 @@ struct SphereGenerator
         
         var vertices = [Vertex]()
         var indices = [UInt16]()
-        var index:UInt16 = 0
+
         var phi = Float32(-M_PI / 2)
-        for stack in 0...stacks
+        for _ in 0...stacks
         {
             var theta:Float32 = 0
             for slice in 0...slices
@@ -48,10 +48,10 @@ struct SphereGenerator
         {
             for slice in 0..<slices
             {
-                var i0 = UInt16(slice + stack * slices)
-                var i1 = i0 + 1
-                var i2 = i0 + UInt16(slices)
-                var i3 = i2 + 1
+                let i0 = UInt16(slice + stack * slices)
+                let i1 = i0 + 1
+                let i2 = i0 + UInt16(slices)
+                let i3 = i2 + 1
                 
                 indices.append(i0)
                 indices.append(i2)
@@ -63,9 +63,9 @@ struct SphereGenerator
             }
         }
         
-        let vertexBuffer = device.newBufferWithBytes(vertices, length:sizeof(Vertex) * vertices.count, options:.OptionCPUCacheModeDefault)
+        let vertexBuffer = device.makeBuffer(bytes: vertices, length:MemoryLayout<Vertex>.size * vertices.count, options:[])
         
-        let indexBuffer = device.newBufferWithBytes(indices, length:sizeof(UInt16) * indices.count, options:.OptionCPUCacheModeDefault)
+        let indexBuffer = device.makeBuffer(bytes: indices, length:MemoryLayout<UInt16>.size * indices.count, options:[])
         
         return (vertexBuffer, indexBuffer)
     }
